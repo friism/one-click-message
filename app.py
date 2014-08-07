@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask 
 from flask import render_template
 from flask import request, redirect
@@ -5,8 +7,8 @@ from flask import request, redirect
 from twilio.rest import TwilioRestClient 
 
 app = Flask(__name__) # Creating the Flask app
-client = TwilioRestClient ('ABC', '0123') # Paste in your AccountSID and AuthToken here
-twilio_number = "+1234567890" # Replace with your Twilio number
+client = TwilioRestClient (os.environ['TWILIO_ACCOUNT_SID'], '0123')
+twilio_number = os.environ['TWILIO_AUTH_TOKEN']
 
 @app.route("/") # When you go to top page of app, this is what it will execute
 def main():
